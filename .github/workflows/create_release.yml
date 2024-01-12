@@ -30,14 +30,18 @@ jobs:
               # Add more files as needed
         shell: python
 
+      - name: Get current date
+        id: current_date
+        run: echo "::set-output name=date::$(date +'%Y%m%d%H%M' -d '${{ github.event.head_commit.timestamp }}')"
+        
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: Release
-          release_name: Release 
+          tag_name: v_${{ steps.current_date.outputs.date }}
+          release_name: Release ${{ steps.current_date.outputs.date }}
           draft: false
           prerelease: false
   
