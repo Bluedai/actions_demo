@@ -30,6 +30,9 @@ jobs:
               # Add more files as needed
         shell: python
 
+      - name: debug date
+        run: echo "Zeit {{ github.event.head_commit.timestamp }}"
+        
       - name: Get current date
         id: current_date
         run: echo "::set-output name=date::$(date +'%Y%m%d%H%M' -d '${{ github.event.head_commit.timestamp }}')"
