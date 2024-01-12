@@ -31,7 +31,7 @@ jobs:
         shell: python
 
       - name: debug date
-        run: echo "Zeit {{ github.event.head_commit.timestamp }}"
+        run: echo "Zeit ${{ github.event.head_commit.timestamp }}"
         
       - name: Get current date
         id: current_date
